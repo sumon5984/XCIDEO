@@ -1,15 +1,20 @@
 {
-    "name": "pair session",
-    "description": "Web Session Generator",
-    "logo": "https://files.catbox.moe/kpf4jq.jpg",
-    "repository": "https://github.com/chamodxxc/PAIR",
-    "keywords": ["MalvinTech","XdKing2"],
+    "name": "♥️GOLD MD PAIR QR♥️",
+    "description": "SESSION ID GENERATOR FOR WHATSAPP BOTS",
+    "logo": "https://i.ibb.co/wspzc9t/IMG-20240328-WA0000.jpg",
+    "repository": "https://github.com/BiLaLTeCh05/Knight_Bot_Pair_Code",
+    "keywords": ["@BiLaLTeCh05"],
     "success_url": "/", 
     "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
     "env": {      
       "PORT": {
         "description": "Port for web app.4000,5000,3000... any!",
         "value": "5000",
+        "required": false 
+      },
+      "MESSAGE": {
+        "description": "Msg Attached With Session ID",
+        "value": "🔰 BY || UMAR 🔰",
         "required": false 
       }
     }   
