@@ -447,7 +447,7 @@
     </div>
     
     <div class="card">
-      <h1>ALI-MD PAIR CODE</h1>
+      <h1>ALI-MD PAIR</h1>
       <p class="subtitle">Enter your WhatsApp number with country code to generate your secure pairing code</p>
       
       <div class="input-group">
@@ -531,7 +531,7 @@
         if (response.data && response.data.code) {
           const code = response.data.code;
           showResult(`
-            <p>Your Ali Md pairing code is:</p>
+            <p>Your pairing code is:</p>
             <div class="code-display">${code}</div>
             <p>This code will expire in 5 minutes</p>
           `, 'success');
