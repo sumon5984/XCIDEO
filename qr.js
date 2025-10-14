@@ -2,166 +2,127 @@ const { makeid } = require('./gen-id');
 const express = require('express');
 const QRCode = require('qrcode');
 const fs = require('fs');
-let router = express.Router();
-const pino = require("pino");
+const pino = require('pino');
 const {
-    default: makeWASocket,
-    useMultiFileAuthState,
-    delay,
-    makeCacheableSignalKeyStore,
-    Browsers,
-    jidNormalizedUser
-} = require("@whiskeysockets/baileys");
+  default: makeWASocket,
+  useMultiFileAuthState,
+  delay,
+  makeCacheableSignalKeyStore,
+  Browsers
+} = require('@whiskeysockets/baileys');
 const { upload } = require('./mega');
+
+const router = express.Router();
+
 function removeFile(FilePath) {
-    if (!fs.existsSync(FilePath)) return false;
+  if (fs.existsSync(FilePath)) {
     fs.rmSync(FilePath, { recursive: true, force: true });
+  }
 }
+
 router.get('/', async (req, res) => {
-    const id = makeid();
- //   let num = req.query.number;
-    async function MALVIN_XD_PAIR_CODE() {
-        const {
-            state,
-            saveCreds
-        } = await useMultiFileAuthState('./temp/' + id);
-        try {
-var items = ["Safari"];
-function selectRandomItem(array) {
-  var randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-}
-var randomItem = selectRandomItem(items);
-            
-            let sock = makeWASocket({
-                	
-				auth: state,
-				printQRInTerminal: false,
-				logger: pino({
-					level: "silent"
-				}),
-				browser: Browsers.macOS("Desktop"),
-			});
-            
-            sock.ev.on('creds.update', saveCreds);
-            sock.ev.on("connection.update", async (s) => {
-                const {
-                    connection,
-                    lastDisconnect,
-                    qr
-                } = s;
-              if (qr) await res.end(await QRCode.toBuffer(qr));
-                if (connection == "open") {
-                    await delay(5000);
-                    let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
-                    let rf = __dirname + `/temp/${id}/creds.json`;
-                    function generateRandomText() {
-                        const prefix = "3EB";
-                        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                        let randomText = prefix;
-                        for (let i = prefix.length; i < 22; i++) {
-                            const randomIndex = Math.floor(Math.random() * characters.length);
-                            randomText += characters.charAt(randomIndex);
-                        }
-                        return randomText;
-                    }
-                    const randomText = generateRandomText();
-                    try {
-                        const { upload } = require('./mega');
-                        const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
-                        const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "BILAL-MD~" + string_session;
-                        let code = await sock.sendMessage(sock.user.id, { text: md });
-                        let desc = `*Hey there, BILAL-MD User!* 👋🏻
+  const id = makeid();
 
-Thanks for using *BILAL MD* — your session has been successfully created!
+  async function ALI_MD_QR() {
+    const { state, saveCreds } = await useMultiFileAuthState('./temp/' + id);
+    try {
+      const sock = makeWASocket({
+        auth: {
+          creds: state.creds,
+          keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'fatal' }).child({ level: 'fatal' }))
+        },
+        printQRInTerminal: false,
+        generateHighQualityLinkPreview: true,
+        logger: pino({ level: 'error' }),
+        syncFullHistory: false,
+        browser: Browsers.macOS('Safari')
+      });
 
-🔐 *Session ID:* Sent above  
-⚠️ *Keep it safe!* Do NOT share this ID with anyone.
+      sock.ev.on('creds.update', saveCreds);
 
-——————
+      sock.ev.on('connection.update', async (update) => {
+        const { connection, lastDisconnect, qr } = update;
 
-*✅ Stay Updated:*  
-Join our official WhatsApp Channel:  
-https://whatsapp.com/channel/0029Vaj3Xnu17EmtDxTNnQ0G
-*💻 Source Code:*  
-Fork & explore the project on GitHub:  
-https://github.com/BILALKING/BILAL-MD
-
-——————
-
-> *© Powered by BILAL-MD*
-Stay WHITH US. ✌🏻`;
-                        await sock.sendMessage(sock.user.id, {
-text: desc,
-contextInfo: {
-externalAdReply: {
-title: "BILAL-MD 𝕮𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉",
-thumbnailUrl: "https://files.catbox.moe/kpf4jq.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029Vak4dFAHQbSBzyxlGG13",
-mediaType: 1,
-renderLargerThumbnail: true
-}  
-}
-},
-{quoted:code })
-                    } catch (e) {
-                            let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*Hey there, BILAL-MD User!* 👋🏻
-
-Thanks for using *BILAL-MD* — your session has been successfully created!
-
-🔐 *Session ID:* Sent above  
-⚠️ *Keep it safe!* Do NOT share this ID with anyone.
-
-——————
-
-*✅ Stay Updated:*  
-Join our official WhatsApp Channel:  
-https://whatsapp.com/channel/0029Vaj3Xnu17EmtDxTNnQ0G
-*💻 Source Code:*  
-Fork & explore the project on GitHub:  
-
-
-> *© Powered by BILAL MD*
-Stay WITH US. ✌🏻*`;
-                            await sock.sendMessage(sock.user.id, {
-text: desc,
-contextInfo: {
-externalAdReply: {
-title: "BILAL-MD 𝕮𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉 ✅  ",
-thumbnailUrl: "https://whatsapp.com/channel/0029Vaj3Xnu17EmtDxTNnQ0G",
-mediaType: 2,
-renderLargerThumbnail: true,
-showAdAttribution: true
-}  
-}
-},
-{quoted:ddd })
-                    }
-                    await delay(10);
-                    await sock.ws.close();
-                    await removeFile('./temp/' + id);
-                    console.log(`👤 ${sock.user.id} 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 ✅ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...`);
-                    await delay(10);
-                    process.exit();
-                } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
-                    await delay(10);
-                    MALVIN_XD_PAIR_CODE();
-                }
-            });
-        } catch (err) {
-            console.log("service restated");
-            await removeFile('./temp/' + id);
-            if (!res.headersSent) {
-                await res.send({ code: "❗ Service Unavailable" });
-            }
+        // ✅ Send QR as image safely
+        if (qr && !res.headersSent) {
+          const qrBuffer = await QRCode.toBuffer(qr);
+          res.writeHead(200, { 'Content-Type': 'image/png' });
+          res.end(qrBuffer);
         }
+
+        if (connection === 'open') {
+          await delay(4000);
+
+          const rf = __dirname + `/temp/${id}/creds.json`;
+          if (!fs.existsSync(rf)) return;
+
+          try {
+            // 🔐 Upload creds to MEGA
+            const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
+            const string_session = mega_url.replace('https://mega.nz/file/', '');
+            const session_id = 'ALI-MD~' + string_session;
+
+            // 💬 Send session ID to user
+            const codeMsg = await sock.sendMessage(sock.user.id, { text: session_id });
+
+            // 📢 Send info/thanks message
+            const desc = `*ʜᴇʏ ᴛʜᴇʀᴇ, ᴀʟɪ-ᴍᴅ ʙᴏᴛ ᴜsᴇʀ!* 👋🏻
+
+*🔐 ʏᴏᴜʀ sᴇssɪᴏɴ ɪᴅ ɪs ʀᴇᴀᴅʏ!*
+*⚠️ ᴋᴇᴇᴘ ɪᴛ sᴀғᴇ! ᴅᴏ ɴᴏᴛ sʜᴀʀᴇ ᴛʜɪs ɪᴅ ᴡɪᴛʜ ᴀɴʏᴏɴᴇ.*
+
+ *🪀 ᴄʜᴀɴɴᴇʟ:*  
+*https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h*
+
+ *🖇️ ʀᴇᴘᴏ:*
+*https://github.com/ALI-INXIDE/ALI-MD*
+
+> *© ᴘσωєʀє∂ ву αℓι м∂⎯꯭̽💀🚩*`;
+
+            await sock.sendMessage(
+              sock.user.id,
+              {
+                text: desc,
+                contextInfo: {
+                  externalAdReply: {
+                    title: '𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐍𝐍𝐄𝐂𝐓 🎀',
+                    thumbnailUrl: 'https://files.catbox.moe/zauvq6.jpg',
+                    sourceUrl: 'https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h',
+                    mediaType: 1,
+                    renderLargerThumbnail: true
+                  }
+                }
+              },
+              { quoted: codeMsg }
+            );
+          } catch (err) {
+            console.error('Upload error:', err);
+            await sock.sendMessage(sock.user.id, { text: `❗ Error uploading session:\n${err}` });
+          } finally {
+            // Cleanup
+            removeFile('./temp/' + id);
+            if (sock?.ws) sock.ws.close();
+            console.log(`✅ ${sock.user.id} connected & cleaned.`);
+          }
+        } else if (connection === 'close' && lastDisconnect?.error?.output?.statusCode != 401) {
+          console.log('Connection closed, restarting...');
+          ALI_MD_QR();
+        }
+      });
+    } catch (err) {
+      console.error('Main error:', err);
+      removeFile('./temp/' + id);
+      if (!res.headersSent) res.status(500).send({ code: '❗ Service Unavailable' });
     }
-    await MALVIN_XD_PAIR_CODE();
+  }
+
+  await ALI_MD_QR();
 });
+
+// 🕐 Optional safety restart (3 hours)
 setInterval(() => {
-    console.log("☘️ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
-    process.exit();
-}, 180000); //30min
+  console.log('♻️ Restarting process for stability...');
+  process.exit(0);
+}, 10800000);
+
 module.exports = router;
