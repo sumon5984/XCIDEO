@@ -3,129 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="" type="image/x-icon">
+  <meta name="description" content="ALI-MD Inc - Streamlined QR Code and Pairing Features">
+  <meta name="author" content="ALI INXIDE INC">
+  <title>ALI-MD | WEB PAIR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    :root {
+      --primary: #00e6b8;
+      --primary-dark: #00a97f;
+      --secondary: #1a1a2e;
+      --background: #0f0f17;
+      --card-bg: #161622;
+      --text: #f0f0f0;
+      --text-muted: #a0a0a0;
+    }
+
+    * {
       margin: 0;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "https://railway.app",
-            "logo": "https://files.catbox.moe/d8g88d.jpg"
-    }
-
-    .button-container {
-      text-align: center;
+    body {
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    h3 {
-      margin-top: -40px;
-      opacity: 0;
-      animation: fadeIn 3s forwards;
-    }
-
-    .button {
-      width: 140px;
-      height: 40px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 0px 15px;
-      background-color: red;
-      border-radius: 10px;
-      border: none;
-      color: white;
-      position: relative;
-      cursor: pointer;
-      font-weight: 900;
-      transition-duration: .2s;
-      background: linear-gradient(0deg, #000, #272727);
-      text-decoration: none;
+      min-height: 100vh;
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0, 230, 184, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 169, 127, 0.1) 0%, transparent 50%);
+      background-attachment: fixed;
     }
 
-  
-    footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #222; /* Darker gray footer background */
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 14px;
-    
-  }
-    .button:before, .button:after {
+    .container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+      width: 90%;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 10px rgba(0, 230, 184, 0.3));
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      position: relative;
+      padding: 1.2em 1.5em;
+      background: transparent;
+      border-radius: 12px;
+      border: none;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+      background-color: rgba(30, 30, 40, 0.5);
+    }
+
+    .btn::before {
       content: '';
       position: absolute;
-      left: -2px;
-      top: -2px;
-      border-radius: 10px;
-      background: linear-gradient(45deg, #48ff00, #15ff00, #000000,#000000, #ff0000);
-      background-size: 400%;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       z-index: -1;
-      animation: steam 10s linear infinite;
+      clip-path: circle(0% at 50% 50%);
+      transition: clip-path 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    @keyframes steam {
-      0% {
-        background-position: 0 0;
+    .btn:hover::before {
+      clip-path: circle(100% at 50% 50%);
+    }
+
+    .btn:hover {
+      color: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 230, 184, 0.3);
+    }
+
+    .footer {
+      margin-top: 3rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
       }
-
-      50% {
-        background-position: 400% 0;
+      .subtitle {
+        font-size: 1rem;
       }
-
-      100% {
-        background-position: 0 0;
-      }
-    }
-
-    .button:after {
-      filter: blur(50px);
-    }
-
-    .button span {
-      z-index: 1;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
+      .btn-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="button-container">
-    <h3> BILAL SESSION</h3>
-    <div></div>
-    <a href="/qr" class="button" target="_blank"> <span>QR-CODE</span> </a> <br>
-    <a href="/pair" class="button" target="_blank"> <span>PAIRING-CODE</span> </a> <br>
-    <a href="https://github.com/bilalking/BILAL-MD/fork" class="button" target="_blank"> <span>FORK BILAL-MD</span> </a> <br> </a>
-    <a href="https://whatsapp.com/channel/0029Vaj3Xnu17EmtDxTNnQ0G" class="button" target="_blank"> <span>WhatsApp</span> </a> <br>
+  <div class="container">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+    </svg>
+    <h1>ALI-MD SESSION</h1>
+    <p class="subtitle">Next-generation WhatsApp Bot pairing experience</p>
+    
+    <div class="btn-grid">
+  <!-- Pair Code -->
+  <button class="btn" onclick="location.href='/pair'">
+    <i class="fas fa-link"></i> PAIR CODE
+  </button>
 
-    <p>HAVE ANY ERROR CLICK ERROR BUTTON</p>
+  <!-- QR Code -->
+  <button class="btn" onclick="location.href='/qr'">
+    <i class="fas fa-qrcode"></i> QR CODE
+  </button>
 
-    <a href="https://wa.me/923078071982" class="button" target="_blank"> <span>ERROR</span> </a> <br>
+  <!-- Heroku Deploy -->
+  <button class="btn" onclick="window.open('https://dashboard.heroku.com/new?template=https://github.com/ALI-INXIDE/ALI-MD', '_blank', 'noopener')">
+  <i class="fas fa-rocket"></i> HEROKU DEPLOY
+</button>
 
-    <footer>
-     BILALKING|2025 &copy; <span id="currentYear"></span>
-    </footer>
-  
+  <!-- GitHub Fork -->
+  <button class="btn" onclick="window.open('https://github.com/ALI-INXIDE/ALI-MD/fork', '_blank', 'noopener')">
+    <i class="fab fa-github"></i> GITHUB FORK
+  </button>
+
+  <!-- WhatsApp Channel -->
+  <button class="btn" onclick="window.open('https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h', '_blank', 'noopener')">
+    <i class="fab fa-whatsapp"></i> CHANNEL
+  </button>
+</div>
+    
+    <p class="footer">漏 2025 ALI INXIDE INC. All rights reserved.</p>
+  </div>
+
+  <script>
+    // Smooth hover effect enhancement
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        btn.style.setProperty('--mouse-x', `${x}px`);
+        btn.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
 </body>
 </html>
