@@ -4,7 +4,7 @@ __path = process.cwd()
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8000;
 let server = require('./qr'),
-    code = require('./pair');
+ code = require('./pair');
 require('events').EventEmitter.defaultMaxListeners = 500;
 app.use('/server', server);
 app.use('/code', code);
